@@ -1,33 +1,39 @@
 type Cryptocurrency = {
   id: number;
-  name?: string | null;
-  type?: "Layer 1" | "Layer 2" | "Stablecoin" | "Memecoin" | null;
+  name: string | null;
+  symbol: string | null;
+  type: "Layer 1" | "Layer 2" | "Stablecoin" | "Memecoin" | null;
 };
 
 export const cryptocurrencies: Cryptocurrency[] = [
   {
     id: 1,
     name: "Bitcoin",
+    symbol: "BTC",
     type: "Layer 1",
   },
   {
     id: 2,
     name: "Etherium",
+    symbol: "ETH",
     type: "Layer 1",
   },
   {
     id: 3,
     name: "Tether",
+    symbol: "USDT",
     type: "Stablecoin",
   },
   {
     id: 4,
-    name: "XRP",
+    name: "Ripple",
+    symbol: "XRP",
     type: "Layer 1",
   },
   {
     id: 5,
-    name: "BNB",
+    name: "Binance Coin",
+    symbol: "BNB",
     type: "Layer 1",
   },
 ];
