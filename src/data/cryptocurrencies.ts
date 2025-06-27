@@ -5,7 +5,7 @@ type Cryptocurrency = {
   type?: "Layer 1" | "Layer 2" | "Stablecoin" | "Memecoin";
 };
 
-export const cryptocurrencies: Cryptocurrency[] = [
+export const dataCryptocurrencies: Cryptocurrency[] = [
   {
     id: 1,
     name: "Bitcoin",

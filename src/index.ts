@@ -1,5 +1,7 @@
 import { Hono } from "hono";
-import { cryptocurrencies } from "./data/cryptocurrencies";
+import { dataCryptocurrencies } from "./data/cryptocurrencies";
+
+let cryptocurrencies = dataCryptocurrencies;
 
 const app = new Hono();
 
@@ -36,15 +38,18 @@ app.get("/cryptocurrencies/:id", (c) => {
 app.post("/cryptocurrencies", async (c) => {
   const body = await c.req.json();
 
-  const updatedCryptocurrencies = [
-    ...cryptocurrencies,
-    {
-      id: cryptocurrencies[cryptocurrencies.length - 1].id + 1 || 1,
-      ...body,
-    },
-  ];
+  const nextId = cryptocurrencies[cryptocurrencies.length - 1].id + 1 || 1;
 
-  return c.json(body);
+  const newCryptocurrency = {
+    id: nextId,
+    ...body,
+  };
+
+  const updatedCryptocurrencies = [...cryptocurrencies, newCryptocurrency];
+
+  cryptocurrencies = updatedCryptocurrencies;
+
+  return c.json(newCryptocurrency);
 });
 
 export default app;
