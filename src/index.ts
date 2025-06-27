@@ -33,4 +33,18 @@ app.get("/cryptocurrencies/:id", (c) => {
   return c.json(cryptocurrency);
 });
 
+app.post("/cryptocurrencies", async (c) => {
+  const body = await c.req.json();
+
+  const updatedCryptocurrencies = [
+    ...cryptocurrencies,
+    {
+      id: cryptocurrencies[cryptocurrencies.length - 1].id + 1 || 1,
+      ...body,
+    },
+  ];
+
+  return c.json(body);
+});
+
 export default app;

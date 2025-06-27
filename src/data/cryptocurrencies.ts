@@ -2,7 +2,7 @@ type Cryptocurrency = {
   id: number;
   name: string;
   symbol: string;
-  type: "Layer 1" | "Layer 2" | "Stablecoin" | "Memecoin";
+  type?: "Layer 1" | "Layer 2" | "Stablecoin" | "Memecoin";
 };
 
 export const cryptocurrencies: Cryptocurrency[] = [
