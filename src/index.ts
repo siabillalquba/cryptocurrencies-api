@@ -52,4 +52,16 @@ app.post("/cryptocurrencies", async (c) => {
   return c.json(newCryptocurrency);
 });
 
+// TODO:Delete all cryptocurrencies
+app.delete();
+
+// TODO:Delete cryptocurrency by id
+app.delete();
+
+// TODO:Patch cryptocurrency by id
+app.patch();
+
+// TODO:Update cryptocurrency by id
+app.put();
+
 export default app;
