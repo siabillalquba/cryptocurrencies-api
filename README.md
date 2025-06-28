@@ -6,7 +6,7 @@
 | ------------------------ | ------ | --------------------------- | ---- |
 | `/cryptocurrencies`      | GET    | Get all cryptocurrencies    | ✅   |
 | `/cryptocurrencies/:id`  | GET    | Get cryptocurrency by id    | ✅   |
-| `/cryptocurrencies`      | POST   | Add new cryptocurrency      |      |
+| `/cryptocurrencies`      | POST   | Add new cryptocurrency      | ✅   |
 | `/cryptocurrencies`      | DELETE | Delete all cryptocurrencies |      |
 | `/cryptocurrencies/:id}` | DELETE | Delete cryptocurrency by id |      |
 | `/cryptocurrencies/:id}` | PATCH  | Patch cryptocurrency by id  |      |
