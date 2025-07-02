@@ -12,10 +12,12 @@ app.get("/", (c) => {
   });
 });
 
+// Get all cryptocurrencies
 app.get("/cryptocurrencies", (c) => {
   return c.json(cryptocurrencies);
 });
 
+// Get cryptocurrency by id
 app.get("/cryptocurrencies/:id", (c) => {
   const id = Number(c.req.param("id"));
 
@@ -35,10 +37,14 @@ app.get("/cryptocurrencies/:id", (c) => {
   return c.json(cryptocurrency);
 });
 
+// Add new cryptocurrency
 app.post("/cryptocurrencies", async (c) => {
   const body = await c.req.json();
 
-  const nextId = cryptocurrencies[cryptocurrencies.length - 1].id + 1 || 1;
+  const nextId =
+    cryptocurrencies.length === 0
+      ? 1
+      : cryptocurrencies[cryptocurrencies.length - 1].id + 1;
 
   const newCryptocurrency = {
     id: nextId,
@@ -52,11 +58,24 @@ app.post("/cryptocurrencies", async (c) => {
   return c.json(newCryptocurrency);
 });
 
-// TODO:Delete all cryptocurrencies
-app.delete();
+// Delete all cryptocurrencies
+app.delete("/cryptocurrencies", (c) => {
+  cryptocurrencies = [];
+  return c.json(cryptocurrencies);
+});
 
-// TODO:Delete cryptocurrency by id
-app.delete();
+// Delete cryptocurrency by id
+app.delete("/cryptocurrencies/:id", (c) => {
+  const id = Number(c.req.param("id"));
+
+  const filteredCryptocurrency = cryptocurrencies.filter(
+    (cryptocurrency) => cryptocurrency.id != id
+  );
+
+  cryptocurrencies = filteredCryptocurrency;
+
+  return c.json(filteredCryptocurrency);
+});
 
 // TODO:Patch cryptocurrency by id
 app.patch();
