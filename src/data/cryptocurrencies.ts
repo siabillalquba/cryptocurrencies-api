@@ -3,7 +3,13 @@ type Cryptocurrency = {
   name: string;
   symbol: string;
   type?: "Layer 1" | "Layer 2" | "Stablecoin" | "Memecoin";
-  founder: string;
+  founder: Founder;
+};
+
+type Founder = {
+  slug?: string;
+  name: string;
+  url?: string;
 };
 
 export const dataCryptocurrencies: Cryptocurrency[] = [
@@ -12,7 +18,11 @@ export const dataCryptocurrencies: Cryptocurrency[] = [
     name: "Bitcoin",
     symbol: "BTC",
     type: "Layer 1",
-    founder: "Satoshi Nakamoto",
+    founder: {
+      slug: "satoshi-nakamoto",
+      name: "Satoshi Nakamoto",
+      url: "https://en.wikipedia.org/wiki/Satoshi_Nakamoto",
+    },
   },
   {
     id: 2,
