@@ -12,16 +12,9 @@
 | `/cryptocurrencies/:id}` | PATCH  | Patch cryptocurrency by id  |      |
 | `/cryptocurrencies/:id}` | PUT    | Update cryptocurrency by id |      |
 
-## Endpoints
+## Database Design
 
-Endpoint HTTP Description
-/items GET Get all items
-/items/{id} GET Get item by id
-/items POST Add new item
-/items DELETE Delete all items
-/items/{id} DELETE Delete item by id
-/items/{id} PATCH Patch item by id
-/items/{id} PUT Update item by id
+Access the Design here: [link](https://dbdiagram.io/d/Cryptocurrencies-API-68653ed2f413ba3508f08685)
 
 ## Getting Started
 
