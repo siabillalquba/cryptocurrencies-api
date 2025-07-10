@@ -78,9 +78,44 @@ app.delete("/cryptocurrencies/:id", (c) => {
 });
 
 // TODO:Patch cryptocurrency by id
-app.patch();
+app.patch("/cryptocurrencies/:id", async (c) => {
+  const id = Number(c.req.param("id"));
+  const body = await c.req.json();
+
+  const cryptocurrency = cryptocurrencies.find(
+    (cryptocurrency) => cryptocurrency.id == id
+  );
+
+  if (!cryptocurrency) {
+    return c.json(
+      {
+        message: "Cryptocurrency not found",
+      },
+      404
+    );
+  }
+
+  const editedCryptocurrency = {
+    id,
+    ...body,
+  };
+
+  const updatedCryptocurrency = cryptocurrencies.map((cryptocurrency) => {
+    if (cryptocurrency.id == id) {
+      return {
+        ...cryptocurrency,
+        ...editedCryptocurrency,
+      };
+    }
+    return cryptocurrency;
+  });
+
+  cryptocurrencies = updatedCryptocurrency;
+
+  return c.json(editedCryptocurrency);
+});
 
 // TODO:Update cryptocurrency by id
-app.put();
+app.put("/cryptocurrencies/:id");
 
 export default app;
