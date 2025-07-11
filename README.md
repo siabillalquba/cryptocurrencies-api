@@ -9,7 +9,7 @@
 | `/cryptocurrencies`      | POST   | Add new cryptocurrency      | ✅   |
 | `/cryptocurrencies`      | DELETE | Delete all cryptocurrencies | ✅   |
 | `/cryptocurrencies/:id}` | DELETE | Delete cryptocurrency by id | ✅   |
-| `/cryptocurrencies/:id}` | PATCH  | Patch cryptocurrency by id  |      |
+| `/cryptocurrencies/:id}` | PATCH  | Patch cryptocurrency by id  | ✅   |
 | `/cryptocurrencies/:id}` | PUT    | Update cryptocurrency by id |      |
 
 ## Database Design
