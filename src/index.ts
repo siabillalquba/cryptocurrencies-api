@@ -82,6 +82,11 @@ app.patch("/cryptocurrencies/:id", async (c) => {
   const id = Number(c.req.param("id"));
   const body = await c.req.json();
 
+  const newCryptocurrency = {
+    id,
+    ...body,
+  };
+
   const cryptocurrency = cryptocurrencies.find(
     (cryptocurrency) => cryptocurrency.id == id
   );
@@ -95,16 +100,11 @@ app.patch("/cryptocurrencies/:id", async (c) => {
     );
   }
 
-  const editedCryptocurrency = {
-    id,
-    ...body,
-  };
-
   const updatedCryptocurrency = cryptocurrencies.map((cryptocurrency) => {
     if (cryptocurrency.id == id) {
       return {
         ...cryptocurrency,
-        ...editedCryptocurrency,
+        ...newCryptocurrency,
       };
     }
     return cryptocurrency;
@@ -112,10 +112,12 @@ app.patch("/cryptocurrencies/:id", async (c) => {
 
   cryptocurrencies = updatedCryptocurrency;
 
-  return c.json(editedCryptocurrency);
+  return c.json(newCryptocurrency);
 });
 
 // TODO:Update cryptocurrency by id
-app.put("/cryptocurrencies/:id");
+app.put("/cryptocurrencies/:id", async (c) => {
+  //
+});
 
 export default app;
