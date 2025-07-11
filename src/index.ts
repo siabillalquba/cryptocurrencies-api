@@ -1,5 +1,9 @@
+import "dotenv/config";
+
 import { Hono } from "hono";
 import { dataCryptocurrencies } from "./data/cryptocurrencies";
+
+console.log(process.env);
 
 let cryptocurrencies = dataCryptocurrencies;
 
