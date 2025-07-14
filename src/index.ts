@@ -1,9 +1,9 @@
 import "dotenv/config";
-
+import { PrismaClient } from "./generated/prisma";
 import { Hono } from "hono";
 import { dataCryptocurrencies } from "./data/cryptocurrencies";
 
-console.log(process.env);
+const prisma = new PrismaClient();
 
 let cryptocurrencies = dataCryptocurrencies;
 
@@ -17,8 +17,10 @@ app.get("/", (c) => {
 });
 
 // Get all cryptocurrencies
-app.get("/cryptocurrencies", (c) => {
-  return c.json(cryptocurrencies);
+app.get("/cryptocurrencies", async (c) => {
+  const allCryptocurrencies = await prisma.cryptocurrency.findMany();
+
+  return c.json(allCryptocurrencies);
 });
 
 // Get cryptocurrency by id
