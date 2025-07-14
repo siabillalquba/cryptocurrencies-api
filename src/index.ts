@@ -24,21 +24,14 @@ app.get("/cryptocurrencies", async (c) => {
 });
 
 // Get cryptocurrency by id
-app.get("/cryptocurrencies/:id", (c) => {
+app.get("/cryptocurrencies/:id", async (c) => {
   const id = Number(c.req.param("id"));
 
-  const cryptocurrency = cryptocurrencies.find(
-    (cryptocurrency) => cryptocurrency.id == id
-  );
+  const cryptocurrency = await prisma.cryptocurrency.findUnique({
+    where: { id },
+  });
 
-  if (!cryptocurrency) {
-    return c.json(
-      {
-        message: "Cryptocurrency not found",
-      },
-      404
-    );
-  }
+  if (!cryptocurrency) return c.notFound();
 
   return c.json(cryptocurrency);
 });
@@ -47,19 +40,13 @@ app.get("/cryptocurrencies/:id", (c) => {
 app.post("/cryptocurrencies", async (c) => {
   const body = await c.req.json();
 
-  const nextId =
-    cryptocurrencies.length === 0
-      ? 1
-      : cryptocurrencies[cryptocurrencies.length - 1].id + 1;
-
-  const newCryptocurrency = {
-    id: nextId,
-    ...body,
-  };
-
-  const updatedCryptocurrencies = [...cryptocurrencies, newCryptocurrency];
-
-  cryptocurrencies = updatedCryptocurrencies;
+  const newCryptocurrency = await prisma.cryptocurrency.create({
+    data: {
+      name: body.name,
+      symbol: body.symbol,
+      founder: body.founder,
+    },
+  });
 
   return c.json(newCryptocurrency);
 });
