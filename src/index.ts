@@ -42,9 +42,11 @@ app.post("/cryptocurrencies", async (c) => {
 
   const newCryptocurrency = await prisma.cryptocurrency.create({
     data: {
-      name: body.name,
-      symbol: body.symbol,
-      founder: body.founder,
+      ...body,
+    },
+    include: {
+      type: true,
+      founder: true,
     },
   });
 
