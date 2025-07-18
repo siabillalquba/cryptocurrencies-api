@@ -15,38 +15,41 @@ datasource db {
 }
 
 model Cryptocurrency {
-  id        Int      @id @default(autoincrement())
-  name      String
-  symbol    String
+  id Int @id @default(autoincrement())
 
+  name   String
+  symbol String @unique
+
+  founder   Founder? @relation(fields: [founderId], references: [id])
   founderId Int?
-  founder   Founder?  @relation(fields: [founderId], references: [id])
-  
-  typeId Int
-  type Type @relation(fields: [typeId], references: [id])
+
+  type   Type? @relation(fields: [typeId], references: [id])
+  typeId Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Founder {
-  id        Int      @id @default(autoincrement())
-  name      String
-  slug      String
-  url       String
+  id Int @id @default(autoincrement())
 
-  Cryptocurrency Cryptocurrency[]
+  name String
+  slug String @unique
+  url  String
+
+  cryptocurrencies Cryptocurrency[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Type {
-  id        Int      @id @default(autoincrement())
-  name      String
-  type_id Int
+  id Int @id @default(autoincrement())
 
-  cryptocurrency Cryptocurrency[]
+  name String // Examples: "Layer 1" | "Layer 2" | "Stablecoin" | "Memecoin"
+  slug String @unique // layer-1 | layer-2 | stablecoin | memecoin
+
+  cryptocurrencies Cryptocurrency[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
