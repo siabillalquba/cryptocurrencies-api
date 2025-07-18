@@ -19,8 +19,8 @@ model Cryptocurrency {
   name      String
   symbol    String
 
-  founderId Int
-  founder   Founder  @relation(fields: [founderId], references: [id])
+  founderId Int?
+  founder   Founder?  @relation(fields: [founderId], references: [id])
   
   typeId Int
   type Type @relation(fields: [typeId], references: [id])

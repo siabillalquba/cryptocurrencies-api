@@ -18,7 +18,12 @@ app.get("/", (c) => {
 
 // Get all cryptocurrencies
 app.get("/cryptocurrencies", async (c) => {
-  const allCryptocurrencies = await prisma.cryptocurrency.findMany();
+  const allCryptocurrencies = await prisma.cryptocurrency.findMany({
+    include: {
+      type: true,
+      founder: true,
+    },
+  });
 
   return c.json(allCryptocurrencies);
 });
@@ -29,6 +34,10 @@ app.get("/cryptocurrencies/:id", async (c) => {
 
   const cryptocurrency = await prisma.cryptocurrency.findUnique({
     where: { id },
+    include: {
+      type: true,
+      founder: true,
+    },
   });
 
   if (!cryptocurrency) return c.notFound();
