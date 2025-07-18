@@ -18,6 +18,36 @@ model Cryptocurrency {
   id        Int      @id @default(autoincrement())
   name      String
   symbol    String
-  founder   String
+
+  founderId Int
+  founder   Founder  @relation(fields: [founderId], references: [id])
+  
+  typeId Int
+  type Type @relation(fields: [typeId], references: [id])
+
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Founder {
+  id        Int      @id @default(autoincrement())
+  name      String
+  slug      String
+  url       String
+
+  Cryptocurrency Cryptocurrency[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Type {
+  id        Int      @id @default(autoincrement())
+  name      String
+  type_id Int
+
+  cryptocurrency Cryptocurrency[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
