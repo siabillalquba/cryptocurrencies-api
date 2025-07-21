@@ -1,11 +1,11 @@
 import "dotenv/config";
 import { PrismaClient } from "./generated/prisma";
 import { Hono } from "hono";
-import { dataCryptocurrencies } from "./data/cryptocurrencies";
+//import { dataCryptocurrencies } from "../prisma/data/cryptocurrencies";
 
 const prisma = new PrismaClient();
 
-let cryptocurrencies = dataCryptocurrencies;
+//let cryptocurrencies = dataCryptocurrencies;
 
 const app = new Hono();
 
@@ -76,61 +76,61 @@ app.post("/cryptocurrencies", async (c) => {
 });
 
 // Delete all cryptocurrencies
-app.delete("/cryptocurrencies", (c) => {
-  cryptocurrencies = [];
-  return c.json(cryptocurrencies);
-});
+// app.delete("/cryptocurrencies", (c) => {
+//   cryptocurrencies = [];
+//   return c.json(cryptocurrencies);
+// });
 
 // Delete cryptocurrency by id
-app.delete("/cryptocurrencies/:id", (c) => {
-  const id = Number(c.req.param("id"));
+// app.delete("/cryptocurrencies/:id", (c) => {
+//   const id = Number(c.req.param("id"));
 
-  const filteredCryptocurrency = cryptocurrencies.filter(
-    (cryptocurrency) => cryptocurrency.id != id
-  );
+//   const filteredCryptocurrency = cryptocurrencies.filter(
+//     (cryptocurrency) => cryptocurrency.id != id
+//   );
 
-  cryptocurrencies = filteredCryptocurrency;
+//   cryptocurrencies = filteredCryptocurrency;
 
-  return c.json(filteredCryptocurrency);
-});
+//   return c.json(filteredCryptocurrency);
+// });
 
 // TODO:Patch cryptocurrency by id
-app.patch("/cryptocurrencies/:id", async (c) => {
-  const id = Number(c.req.param("id"));
-  const body = await c.req.json();
+// app.patch("/cryptocurrencies/:id", async (c) => {
+//   const id = Number(c.req.param("id"));
+//   const body = await c.req.json();
 
-  const newCryptocurrency = {
-    id,
-    ...body,
-  };
+//   const newCryptocurrency = {
+//     id,
+//     ...body,
+//   };
 
-  const cryptocurrency = cryptocurrencies.find(
-    (cryptocurrency) => cryptocurrency.id == id
-  );
+//   const cryptocurrency = cryptocurrencies.find(
+//     (cryptocurrency) => cryptocurrency.id == id
+//   );
 
-  if (!cryptocurrency) {
-    return c.json(
-      {
-        message: "Cryptocurrency not found",
-      },
-      404
-    );
-  }
+//   if (!cryptocurrency) {
+//     return c.json(
+//       {
+//         message: "Cryptocurrency not found",
+//       },
+//       404
+//     );
+//   }
 
-  const updatedCryptocurrency = cryptocurrencies.map((cryptocurrency) => {
-    if (cryptocurrency.id == id) {
-      return {
-        ...cryptocurrency,
-        ...newCryptocurrency,
-      };
-    }
-    return cryptocurrency;
-  });
+//   const updatedCryptocurrency = cryptocurrencies.map((cryptocurrency) => {
+//     if (cryptocurrency.id == id) {
+//       return {
+//         ...cryptocurrency,
+//         ...newCryptocurrency,
+//       };
+//     }
+//     return cryptocurrency;
+//   });
 
-  cryptocurrencies = updatedCryptocurrency;
+//   cryptocurrencies = updatedCryptocurrency;
 
-  return c.json(newCryptocurrency);
-});
+//   return c.json(newCryptocurrency);
+// });
 
 // TODO:Update cryptocurrency by id
 app.put("/cryptocurrencies/:id", async (c) => {
