@@ -13,6 +13,9 @@
     "db:studio": "prisma studio --browser none",
     "db:reset": "prisma migrate reset"
   },
+  "prisma": {
+    "seed": "bun prisma/seed.ts"
+  },
   "dependencies": {
     "@prisma/client": "^6.12.0",
     "@types/pg": "^8.15.4",
