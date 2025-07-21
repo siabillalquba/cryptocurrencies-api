@@ -28,12 +28,12 @@ app.get("/cryptocurrencies", async (c) => {
   return c.json(allCryptocurrencies);
 });
 
-// Get cryptocurrency by id
-app.get("/cryptocurrencies/:id", async (c) => {
-  const id = Number(c.req.param("id"));
+// Get cryptocurrency by symbol
+app.get("/cryptocurrencies/:symbol", async (c) => {
+  const symbol = c.req.param("symbol");
 
   const cryptocurrency = await prisma.cryptocurrency.findUnique({
-    where: { id },
+    where: { symbol },
     include: {
       type: true,
       founder: true,
@@ -51,7 +51,20 @@ app.post("/cryptocurrencies", async (c) => {
 
   const newCryptocurrency = await prisma.cryptocurrency.create({
     data: {
-      ...body,
+      name: body.name,
+      symbol: body.symbol,
+
+      // TODO: Later
+      // founder: {
+      //   connect: {
+      //     slug: body.founderSlug,
+      //   },
+      // },
+      // type: {
+      //   connect: {
+      //     slug: body.typeSlug,
+      //   },
+      // },
     },
     include: {
       type: true,
