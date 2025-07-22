@@ -1,5 +1,3 @@
-import { Cryptocurrency } from "../../src/generated/prisma";
-
 // type SeedCryptocurrency = Omit<Cryptocurrency, "id">;
 type SeedCryptocurrency = {
   name: string;

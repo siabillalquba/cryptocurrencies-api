@@ -10,7 +10,10 @@ async function main() {
       where: { symbol: seedCryptocurrency.symbol },
       update: {},
       create: {
-        ...seedCryptocurrency,
+        name: seedCryptocurrency.name,
+        symbol: seedCryptocurrency.symbol,
+        founderId: seedCryptocurrency.founderId,
+        typeId: seedCryptocurrency.typeId,
       },
     });
     console.log(
