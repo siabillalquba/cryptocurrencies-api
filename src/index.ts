@@ -50,17 +50,16 @@ app.post("/cryptocurrencies", async (c) => {
     data: {
       name: body.name,
       symbol: body.symbol,
-      // TODO: Later
-      // founder: {
-      //   connect: {
-      //     slug: body.founderSlug,
-      //   },
-      // },
-      // type: {
-      //   connect: {
-      //     slug: body.typeSlug,
-      //   },
-      // },
+      founder: body.founderSlug
+        ? {
+            connect: { slug: body.founderSlug },
+          }
+        : undefined,
+      type: body.typeSlug
+        ? {
+            connect: { slug: body.typeSlug },
+          }
+        : undefined,
     },
     include: {
       type: true,
