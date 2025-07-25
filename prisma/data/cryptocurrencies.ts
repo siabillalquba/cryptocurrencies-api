@@ -2,57 +2,57 @@
 type SeedCryptocurrency = {
   name: string;
   symbol: string;
-  founderId?: string | null;
-  typeId?: string | null;
+  founderSlug: string;
+  typeSlug: string | null;
 };
 
 export const dataSeedCryptocurrencies: SeedCryptocurrency[] = [
   {
     name: "Bitcoin",
     symbol: "BTC",
-    founderId: null,
-    typeId: null,
+    founderSlug: "satoshi-nakamoto",
+    typeSlug: null,
   },
   {
     name: "Etherium",
     symbol: "ETH",
-    founderId: null,
-    typeId: null,
+    founderSlug: "vitalik-buterin",
+    typeSlug: null,
   },
   {
     name: "Tether",
     symbol: "USDT",
-    founderId: null,
-    typeId: null,
+    founderSlug: "person",
+    typeSlug: null,
   },
   {
     name: "Ripple",
     symbol: "XRP",
-    founderId: null,
-    typeId: null,
+    founderSlug: "chris-larsen",
+    typeSlug: null,
   },
   {
     name: "Binance Coin",
     symbol: "BNB",
-    founderId: null,
-    typeId: null,
+    founderSlug: "changpeng-cao",
+    typeSlug: null,
   },
   {
     name: "Solana",
     symbol: "SOL",
-    founderId: null,
-    typeId: null,
+    founderSlug: "anatoly-yakovenko",
+    typeSlug: null,
   },
   {
     name: "USDC",
     symbol: "USDC",
-    founderId: null,
-    typeId: null,
+    founderSlug: "person",
+    typeSlug: null,
   },
   {
     name: "Tron",
     symbol: "TRX",
-    founderId: null,
-    typeId: null,
+    founderSlug: "person",
+    typeSlug: null,
   },
 ];
