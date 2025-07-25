@@ -1,11 +1,8 @@
 import "dotenv/config";
 import { PrismaClient } from "./generated/prisma";
 import { Hono } from "hono";
-//import { dataCryptocurrencies } from "../prisma/data/cryptocurrencies";
 
 const prisma = new PrismaClient();
-
-//let cryptocurrencies = dataCryptocurrencies;
 
 const app = new Hono();
 
@@ -76,10 +73,10 @@ app.post("/cryptocurrencies", async (c) => {
 });
 
 // Delete all cryptocurrencies
-// app.delete("/cryptocurrencies", (c) => {
-//   cryptocurrencies = [];
-//   return c.json(cryptocurrencies);
-// });
+app.delete("/cryptocurrencies", async (c) => {
+  const result = await prisma.cryptocurrency.deleteMany();
+  return c.json(result);
+});
 
 // Delete cryptocurrency by id
 // app.delete("/cryptocurrencies/:id", (c) => {
