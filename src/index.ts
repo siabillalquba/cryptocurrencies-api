@@ -50,7 +50,6 @@ app.post("/cryptocurrencies", async (c) => {
     data: {
       name: body.name,
       symbol: body.symbol,
-
       // TODO: Later
       // founder: {
       //   connect: {
