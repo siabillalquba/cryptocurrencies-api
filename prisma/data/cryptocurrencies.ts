@@ -2,57 +2,63 @@
 type SeedCryptocurrency = {
   name: string;
   symbol: string;
-  founderId?: string | null;
-  typeId?: string | null;
+  founderSlug: string;
+  typeSlug: string;
 };
 
 export const dataSeedCryptocurrencies: SeedCryptocurrency[] = [
   {
     name: "Bitcoin",
     symbol: "BTC",
-    founderId: null,
-    typeId: null,
+    founderSlug: "satoshi-nakamoto",
+    typeSlug: "layer-1",
   },
   {
     name: "Etherium",
     symbol: "ETH",
-    founderId: null,
-    typeId: null,
+    founderSlug: "vitalik-buterin",
+    typeSlug: "layer-1",
   },
   {
     name: "Tether",
     symbol: "USDT",
-    founderId: null,
-    typeId: null,
+    founderSlug: "brock-pierce",
+    typeSlug: "stablecoin",
   },
   {
     name: "Ripple",
     symbol: "XRP",
-    founderId: null,
-    typeId: null,
+    founderSlug: "chris-larsen",
+    typeSlug: "layer-1",
   },
   {
     name: "Binance Coin",
     symbol: "BNB",
-    founderId: null,
-    typeId: null,
+    founderSlug: "changpeng-cao",
+    typeSlug: "layer-1",
   },
   {
     name: "Solana",
     symbol: "SOL",
-    founderId: null,
-    typeId: null,
+    founderSlug: "anatoly-yakovenko",
+    typeSlug: "layer-1",
   },
   {
     name: "USDC",
     symbol: "USDC",
-    founderId: null,
-    typeId: null,
+    founderSlug: "jeremy-allaire",
+    typeSlug: "stablecoin",
   },
   {
     name: "Tron",
     symbol: "TRX",
-    founderId: null,
-    typeId: null,
+    founderSlug: "justin-sun",
+    typeSlug: "layer-1",
+  },
+  {
+    name: "Dogecoin",
+    symbol: "DOGE",
+    founderSlug: "billy_markus",
+    typeSlug: "memecoin",
   },
 ];
