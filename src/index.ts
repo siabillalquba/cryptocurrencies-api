@@ -76,56 +76,31 @@ app.delete("/cryptocurrencies", async (c) => {
   return c.json(result);
 });
 
-// Delete cryptocurrency by id
-// app.delete("/cryptocurrencies/:id", (c) => {
-//   const id = Number(c.req.param("id"));
+// Delete cryptocurrency by symbol
+app.delete("/cryptocurrencies/:symbol", async (c) => {
+  const symbol = c.req.param("symbol");
 
-//   const filteredCryptocurrency = cryptocurrencies.filter(
-//     (cryptocurrency) => cryptocurrency.id != id
-//   );
+  const cryptocurrency = await prisma.cryptocurrency.delete({
+    where: { symbol },
+  });
 
-//   cryptocurrencies = filteredCryptocurrency;
+  return c.json(cryptocurrency);
+});
 
-//   return c.json(filteredCryptocurrency);
-// });
+// TODO:Patch cryptocurrency by symbol
+app.patch("/cryptocurrencies/:symbol", async (c) => {
+  const symbol = c.req.param("symbol");
+  const bodyJson = await c.req.json();
 
-// TODO:Patch cryptocurrency by id
-// app.patch("/cryptocurrencies/:id", async (c) => {
-//   const id = Number(c.req.param("id"));
-//   const body = await c.req.json();
+  const cryptocurrency = await prisma.cryptocurrency.update({
+    where: { symbol },
+    data: {
+      name: bodyJson.name,
+    },
+  });
 
-//   const newCryptocurrency = {
-//     id,
-//     ...body,
-//   };
-
-//   const cryptocurrency = cryptocurrencies.find(
-//     (cryptocurrency) => cryptocurrency.id == id
-//   );
-
-//   if (!cryptocurrency) {
-//     return c.json(
-//       {
-//         message: "Cryptocurrency not found",
-//       },
-//       404
-//     );
-//   }
-
-//   const updatedCryptocurrency = cryptocurrencies.map((cryptocurrency) => {
-//     if (cryptocurrency.id == id) {
-//       return {
-//         ...cryptocurrency,
-//         ...newCryptocurrency,
-//       };
-//     }
-//     return cryptocurrency;
-//   });
-
-//   cryptocurrencies = updatedCryptocurrency;
-
-//   return c.json(newCryptocurrency);
-// });
+  return c.json(cryptocurrency);
+});
 
 // TODO:Update cryptocurrency by id
 app.put("/cryptocurrencies/:id", async (c) => {
